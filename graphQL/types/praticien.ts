@@ -7,8 +7,11 @@ export class PraticienInfo{
     _id: string;
 
     @Field()
-    fullName: string
+    firstName: string;
 
     @Field()
-    contact: string
+    lastName: string;
+
+    @Field()
+    contact: string;
 }

@@ -9,7 +9,7 @@ export default class OrdersDAO{
 
     static async injectBD(client: MongoClient){
         try {
-            orders = await client.db(process.env.DB_NAME).collection(process.env.COLLECTION_ORDERS);
+            orders = client.db(process.env.DB_NAME).collection(process.env.COLLECTION_ORDERS);
         } catch (error) {
             console.log("Error when trying to connect to the mongodb database server");
         }

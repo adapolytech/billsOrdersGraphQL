@@ -12,10 +12,10 @@ export class Order{
     @Field()
     patient: PatientInfo;
 
-    medoc: [string]
-    @Field(type => [Doc], {name: "medoc"})
+    prescriptions: [string]
+    @Field(type => [Doc], {name: "prescriptions"})
     resolveMedoc(){
-        if(!this.medoc) return []
+        if(!this.prescriptions) return []
     }
 
     @Field()
