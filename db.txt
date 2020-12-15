@@ -1,0 +1,19 @@
+{
+    patient: {
+         _id
+        fullName
+    },
+    praticien: {
+        _id
+        firstName
+        lastName
+        contact
+    },
+    prescriptions : [
+        {
+            description
+            usage
+        }
+    ],
+    date
+}

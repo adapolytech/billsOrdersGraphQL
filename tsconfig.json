@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "moduleResolution": "Node",
+      "esModuleInterop": true,
+      "outDir": "dist",
+      "lib": ["es6", "esnext.asynciterable"],
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true
+    }
+  }
