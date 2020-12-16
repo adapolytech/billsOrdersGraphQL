@@ -12,6 +12,9 @@ export class PraticienInfo{
     @Field()
     lastName: string;
 
-    @Field()
+    @Field({nullable: true})
     contact: string;
+
+    @Field({nullable: true})
+    specialite: string
 }

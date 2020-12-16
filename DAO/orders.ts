@@ -1,6 +1,8 @@
 import doten from "dotenv"
 import { Collection, MongoClient } from "mongodb";
-import { Order } from "../graphQL/types/order";
+import { newOrder, Order } from "../graphQL/types/order";
+import {ObjectId} from "bson";
+
 doten.config();
 
 let orders: Collection;
@@ -17,12 +19,45 @@ export default class OrdersDAO{
 
     static async getOrder(): Promise<Order>{
         let filter = {};
-        let projec = { projection: {patient: true, doctor: true }};
+        // let projec = { projection: {patient: true, doctor: true }};
 
         try {
-            return await orders.findOne({},projec);
+            return await orders.findOne({});
         } catch (error) {
             
         }
+    }
+
+    static async getPraticienOrders(id: string){
+        const $id = new ObjectId(id);
+        let filter = {"praticien._id": $id}
+        try {
+            return await orders.find(filter).toArray()
+        } catch (error) {
+            
+        }
+    }
+
+    static async getPatientOrders(id: string){
+        const $id = new ObjectId(id);
+        let filter = {"patient._id": $id};
+
+        try {
+            return await orders.find(filter).toArray();
+        } catch (error) {
+            
+        }
+    }
+
+    static async createOrder(order: newOrder){
+        const toJSON = JSON.stringify(order);
+        const doc = JSON.parse(toJSON);
+        try {
+            const response =  await orders.insertOne(doc);
+            return response.insertedId;
+        } catch (error) {
+            return new Error("Not inserted");
+        }
+
     }
 }

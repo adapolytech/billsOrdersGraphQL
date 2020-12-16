@@ -7,16 +7,16 @@ import { MongoClient } from "mongodb";
 import OrdersDAO from "../DAO/orders"
 import { GraphQLSchema } from "graphql";
 
-let Appschema: GraphQLSchema;
-(async function buildAppSchema(){
-    await buildSchema({
+let Appschema;
+async function buildAppSchema(){
+    return await buildSchema({
         resolvers: [OrderResolver], 
-    }).then(schema=>{
-        Appschema = schema
-    });
-})();
+    })
+};
 
+Appschema = buildAppSchema();
 // buildAppSchema();
+console.log(Appschema);
 
 const server = new ApolloServer({
     schema: Appschema,
