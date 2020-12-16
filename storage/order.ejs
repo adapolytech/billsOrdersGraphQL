@@ -12,7 +12,7 @@
         font-size: 20px;
     }
     .order{
-        padding: 5rem 20rem;
+        padding: 5rem 5rem;
     }
     .order-header{
         display: flex;
@@ -47,9 +47,9 @@
 <div class="order">
     <div class="order-header">
         <div class="praticien">
-            <h3>Dr Manuella Santos</h3>
-            <div class="text">Cardiologue</div>
-            <div class="text">Tél: +221 77 858 74 73</div>
+            <h3>Dr <%= order.praticien.firstName %> <%= order.praticien.lastName %></h3>
+            <div class="text"><%= order.praticien.specialite %></div>
+            <div class="text">Tél: <%= order.praticien.contact %></div>
         </div>
         <div class="date">
             <div class="">Date: 12/23/2019</div>

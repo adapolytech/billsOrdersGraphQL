@@ -6,6 +6,9 @@ import express from "express"
 import { MongoClient } from "mongodb";
 import OrdersDAO from "../DAO/orders"
 import { GraphQLSchema } from "graphql";
+import { createPdfOrder } from "../storage/generate"
+
+createPdfOrder();
 
 let Appschema;
 async function buildAppSchema(){
