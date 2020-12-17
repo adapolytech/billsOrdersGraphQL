@@ -17,7 +17,7 @@ export class OrderResolver{
         @Arg("order", {nullable: true})
         order: newOrder)
         {
-        console.log(order);
+        // console.log(order);
         let response = await BillsDAO.createOrder(order);
         console.log(response);
         return 10

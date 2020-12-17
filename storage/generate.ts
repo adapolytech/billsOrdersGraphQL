@@ -22,8 +22,8 @@ async function getString(ord: any){
 export async function createPdfOrder(ord: any): Promise<string>{
     let filePath = randString();
     let data = await getString(ord);
-    console.log(filePath, data)
-    let html = htmlToPdfMake(data,{window:window});
+    // console.log(filePath, data)
+    let html = htmlToPdfMake(data, {window:window});
     let docDefinition = {
         content: [html],
         pageMargins: [ 60, 60, 60, 60 ],
@@ -47,6 +47,6 @@ export async function createPdfOrder(ord: any): Promise<string>{
     pdfGenerate.getBuffer((result: any)=>{
         fs.writeFileSync(filePath, result);
     });
-
+        
     return filePath;
 }
