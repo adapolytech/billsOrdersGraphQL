@@ -27,9 +27,10 @@ export async function createPdfOrder(ord: any): Promise<string>{
     let docDefinition = {
         content: [html],
         pageMargins: [ 60, 60, 60, 60 ],
-        footer:{
-                text: 'Freedocteur', alignment: 'center'
-        },
+        footer:[
+                {text: 'Freedocteur, votre site de prise de rendez-vous médicaux en ligne ', alignment: 'center'},
+                {text: 'Site web: www.freedocteur.com Email: contact@freedocteur.com Tel: (+221)773575661', alignment:'center' }
+        ],
         styles:{
             'ar':{
                 alignment: 'right'

@@ -6,6 +6,9 @@ import {PraticienInfo} from "./praticien"
 @ObjectType()
 export class Order{
 
+    @Field(type => ID,{nullable: true})
+    _id: string;
+
     @Field()
     praticien: PraticienInfo;
 
@@ -24,6 +27,9 @@ export class Order{
     resolveDate(){
         return new Date(this.date);
     }
+
+    @Field({nullable: true})
+    pdf_url: string;
 
     
 }

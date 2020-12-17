@@ -15,16 +15,11 @@
     </div>
     <div>
         <div class="mlr">
-            <% order.prescriptions.forEach(doc=> {%>
+            <% order.prescriptions.forEach((doc, index)=> {%>
                 <p class="mm">
-                    <span> - <%= doc.designation %>........</span>
+                    <span><%= index+1 %> - <%= doc.designation %>........</span>
                     <span><%= doc.usage %></span>
                 </p><% }); %> 
         </div>
-    </div>
-
-    <div>
-        <hr>
-        <p style="text-align: center;">freedocteur</p>
     </div>
 </div>

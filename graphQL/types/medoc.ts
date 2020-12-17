@@ -5,5 +5,5 @@ export class Doc{
 
     @Field() designation: string;
 
-    @Field() usage: string
+    @Field({nullable: true}) usage: string
 }
