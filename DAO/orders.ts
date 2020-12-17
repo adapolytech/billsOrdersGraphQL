@@ -2,6 +2,7 @@ import doten from "dotenv"
 import { Collection, MongoClient } from "mongodb";
 import { newOrder, Order } from "../graphQL/types/order";
 import {ObjectId} from "bson";
+import {createPdfOrder} from "../storage/generate"
 
 doten.config();
 
@@ -52,6 +53,8 @@ export default class OrdersDAO{
     static async createOrder(order: newOrder){
         const toJSON = JSON.stringify(order);
         const doc = JSON.parse(toJSON);
+        let url = await createPdfOrder(doc);
+        doc.url_string = url;
         try {
             const response =  await orders.insertOne(doc);
             return response.insertedId;

@@ -8,8 +8,38 @@ import OrdersDAO from "../DAO/orders"
 import { GraphQLSchema } from "graphql";
 import { createPdfOrder } from "../storage/generate"
 
-createPdfOrder();
+// createPdfOrder();
 
+let ord ={
+    praticien:{
+        specialite:"Cardiologie",
+        firstName: "Manuella",
+        lastName: "SANTOS",
+        contact: "+221 77588984"
+    },
+    patient:{
+        fullName: "Mouhamadou GUEYE"
+    },
+    prescriptions:[
+        {
+        designation: "Paracetamol",
+        usage: "3 comprimés par jours"
+        },
+        {
+            designation: "Panadol",
+            usage: "1 comprime par jour"
+        },
+        {
+            designation: "Ibuprofen",
+            usage: "2 comprimes par jour"
+        }
+
+    ],
+    date: new Date(Date.now()).toLocaleString()
+}
+createPdfOrder(ord).then(str=>{
+    console.log(str);
+})
 let Appschema;
 async function buildAppSchema(){
     return await buildSchema({

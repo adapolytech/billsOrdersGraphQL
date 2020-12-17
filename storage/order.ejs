@@ -1,78 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    body, html{
-        height: 100%;
-        font-family: cursive;
-        font-size: 20px;
-    }
-    .order{
-        padding: 5rem 5rem;
-    }
-    .order-header{
-        display: flex;
-        justify-content: space-between;
-    }
-    .date{
-        align-self: flex-end;
-    }
-    .order-content{
-        display: flex;
-        flex-direction: column;
-        /* align-items: center; */
-        padding: 0 2rem;
-    }
-    .foot{
-        text-align: center;
-    }
-    .mt-3{
-        margin-top: 3rem;
-    }
-    .item{
-        display: flex;
-        justify-content: space-around;
-        height: 28px;
-        border-bottom:  1px dotted;;
-    }
-    .usage, .designation {
-        padding: 8px;
-    }
-</style>
-<body>
-<div class="order">
-    <div class="order-header">
-        <div class="praticien">
+<div>
+    <h3 style="text-align: center; margin-bottom: 50px;">ORDONNANCE</h3>
+    <div>
+        <div>
             <h3>Dr <%= order.praticien.firstName %> <%= order.praticien.lastName %></h3>
-            <div class="text"><%= order.praticien.specialite %></div>
-            <div class="text">Tél: <%= order.praticien.contact %></div>
+            <div><%= order.praticien.specialite %></div>
+            <div>Tél: <%= order.praticien.contact %></div>
         </div>
-        <div class="date">
-            <div class="">Date: 12/23/2019</div>
+        <div class="ar">
+            <div>Date: <%= order.date %> </div>
         </div>
     </div>
-    <div class="patient mt-3">
-        Patient: Mouhamadou GUEYE
+    <div style="margin: 50px 0px">
+        Patient: <%= order.patient.fullName %>
     </div>
-    <div class="order-content mt-3">
-        <div class="item">
-            <div class="designation">Paracetamol</div>
-            <div class="usage">1x jour</div>
-        </div>
-        <div class="item">
-            <span class="designation">Paracetamol</span>
-            <span class="usage">1x jour</span>
+    <div>
+        <div class="mlr">
+            <% order.prescriptions.forEach(doc=> {%>
+                <p class="mm">
+                    <span> - <%= doc.designation %>........</span>
+                    <span><%= doc.usage %></span>
+                </p><% }); %> 
         </div>
     </div>
 
-    <div class="order-footer mt-3">
+    <div>
         <hr>
-        <p class="foot">freedocteur</p>
+        <p style="text-align: center;">freedocteur</p>
     </div>
 </div>
-</body>
-</html>
