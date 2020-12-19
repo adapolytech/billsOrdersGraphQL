@@ -29,20 +29,30 @@ export default class OrdersDAO{
         }
     }
 
-    static async getPraticienOrders(id: string){
-        const $id = new ObjectId(id);
-        let filter = {"praticien._id": $id}
+    static async getPraticienOrders(id: string, startDate?: string, endDate?: string){
+        // const $id = new ObjectId(id);
+        let filter = {};
+        filter = {'praticien._id': id};
+        if(startDate){
+            console.log('yes');
+            filter = {'praticien._id': id, date: {$gt: startDate}}
+        }
+        if(startDate && endDate){
+            console.log('yes')
+            filter = {'praticien._id': id, date: {$gt: new Date(startDate), $lt: new Date(endDate)}};
+        }
+        console.log(filter)
+        let sortBy = { 'date' :-1 };
         try {
-            return await orders.find(filter).toArray()
+            return await orders.find(filter).sort(sortBy).toArray();
         } catch (error) {
-            
+         return error   
         }
     }
 
     static async getPatientOrders(id: string){
         const $id = new ObjectId(id);
-        let filter = {"patient._id": $id};
-
+        let filter = {'patient._id': $id};
         try {
             return await orders.find(filter).toArray();
         } catch (error) {

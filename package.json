@@ -5,7 +5,8 @@
   "main": "src/server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/server.ts"
+    "serve": "ts-node src/server.ts",
+    "watch": "nodemon -e ts -w ./src -x npm run serve"
   },
   "keywords": [
     "freedocteur"
