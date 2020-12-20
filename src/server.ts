@@ -4,7 +4,8 @@ import { buildSchema } from "type-graphql"
 import { OrderResolver } from "../graphQL/resolvers/OrderResolver";
 import express from "express"
 import { MongoClient } from "mongodb";
-import OrdersDAO from "../DAO/orders"
+import OrdersDAO from "../DAO/orders";
+import path from "path"
 // import { GraphQLSchema } from "graphql";
 import { BillsResolver } from "../graphQL/resolvers/BillsResolver";
 import BillsDAO from "../DAO/bills";
@@ -24,7 +25,8 @@ const server = new ApolloServer({
     schema: Appschema,
 });
 
-const app = express()
+const app = express();
+app.use(express.static(path.join(__dirname,'..','/temp')));
 server.applyMiddleware({app: app, path: '/graphql' });
 
 (function connectAndStart(){

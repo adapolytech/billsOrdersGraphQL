@@ -1,0 +1,35 @@
+<h2 style="text-align: center; margin-bottom: 50px;">FACTURE</h2>
+<div>
+    <div>
+        <h3>Dr <%= bill.praticien.firstName %> <%= bill.praticien.lastName %>  </h3>
+        <div>Service : <%= bill.praticien.specialite %> </div>
+        <div>Tél: <%= bill.praticien.contact %> </div>
+    </div>
+    <div class="ar">
+        <p>Date : <%= bill.date %>  </p>
+    </div>
+</div>
+<p style="margin: 50px 0px">Facturé à : <%= bill.patient.fullName %>  </p>
+<table class="tableBody">
+    <thead>
+        <tr>
+            <th>N*</th>
+            <th>Designation</th>
+            <th>Duree</th>
+            <th>Prix</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% bill.items.forEach((element,index) => { %>
+            <tr>
+                <td><%= index+1 %> </td>
+                <td><%= element.designation %> </td>
+                <td><%= element.duree %>  </td>
+                <td><%= element.price %> </td>
+            </tr>
+        <% }) %>
+        <tr>
+            <td colspan="4" style="text-align: right;">Total: 10000</td>
+        </tr>
+    </tbody>
+</table>

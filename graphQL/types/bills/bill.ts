@@ -27,8 +27,8 @@ export class Bill{
     @Field(type =>[String],{nullable: true})
     assurances: string[];
 
-    @Field({nullable: true})
-    pdf_url: string
+    @Field(type=>String, {nullable: true})
+    file_url: string;
 
 }
 

@@ -10,9 +10,9 @@ var { window } = new JSDOM("");
 var htmlToPdfMake = require("html-to-pdfmake");
 import randomString from "crypto-random-string";
 
-function randString():string{
+function randString():string[]{
     let str = randomString({length:32})
-    return path.join(__dirname,'..','temp',`${str}.pdf`);
+    return [path.join(__dirname,'..','temp',`ord-${str}.pdf`),`ord-${str}.pdf`];
 }
 
 async function getString(ord: any){
@@ -20,7 +20,7 @@ async function getString(ord: any){
 }
 
 export async function createPdfOrder(ord: any): Promise<string>{
-    let filePath = randString();
+    let [fullPath, filePath] = randString();
     let data = await getString(ord);
     // console.log(filePath, data)
     let html = htmlToPdfMake(data, {window:window});
@@ -46,7 +46,7 @@ export async function createPdfOrder(ord: any): Promise<string>{
     
     var pdfGenerate = pdfMake.createPdf(docDefinition);
     pdfGenerate.getBuffer((result: any)=>{
-        fs.writeFileSync(filePath, result);
+        fs.writeFileSync(fullPath, result);
     });
         
     return filePath;

@@ -1,4 +1,4 @@
-import {ArgsType, Field, ID, InputType, ObjectType} from "type-graphql"
+import {Field, ID, InputType, ObjectType} from "type-graphql"
 import {Doc} from "./medoc";
 import {PatientInfo} from "./patient";
 import {PraticienInfo} from "./praticien"
@@ -29,7 +29,7 @@ export class Order{
     }
 
     @Field({nullable: true})
-    pdf_url: string;
+    file_url: string;
 
     
 }
@@ -85,14 +85,14 @@ export class newOrder{
     date: Date
 }
 
-@ArgsType()
+@InputType()
 export class SearchArgs{
     @Field()
     _id: string;
 
-    @Field(type=> Date, {nullable: true})
-    startDate: Date;
+    @Field(type=> String, {nullable: true})
+    startDate: string;
 
-    @Field(type=> Date, {nullable: true})
-    endDate: Date;
+    @Field(type=> String, {nullable: true})
+    endDate: string;
 }

@@ -60,11 +60,11 @@ export default class OrdersDAO{
         }
     }
 
-    static async createOrder(order: newOrder){
+    static async createOrder(order: newOrder): Promise<any>{
         const toJSON = JSON.stringify(order);
         const doc = JSON.parse(toJSON);
         let url = await createPdfOrder(doc);
-        doc.url_string = url;
+        doc.file_url = url;
         try {
             const response =  await orders.insertOne(doc);
             return response.insertedId;
